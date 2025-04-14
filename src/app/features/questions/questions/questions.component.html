@@ -1,0 +1,33 @@
+<div class="questions-container">
+  <!-- Loading Indicator -->
+  <div *ngIf="loading" class="loading-indicator">
+    <p>Loading questions...</p>
+    <!-- You can add a spinner animation here -->
+  </div>
+
+  <!-- Error Message Display -->
+  <div *ngIf="errorMessage && !loading" class="error-message alert alert-danger">
+    <p>{{ errorMessage }}</p>
+  </div>
+
+  <!-- Questions List Display -->
+  <div *ngIf="questionsResponse && questionsResponse.data && !loading && !errorMessage">
+    <h2>{{ languageName }} Questions</h2>
+
+    <!-- Message if no questions are found -->
+    <div *ngIf="questionsResponse.data.length === 0" class="no-questions alert alert-info">
+      <p>No questions found for {{ languageName }}.</p>
+    </div>
+
+    <!-- List of questions -->
+    <ul *ngIf="questionsResponse.data.length > 0" class="questions-list">
+      <li *ngFor="let question of questionsResponse.data" class="question-item card mb-3">
+        <div class="card-body">
+          <h3 class="card-title question-title">{{ question.question }}</h3>
+          <div class="card-text question-answer" [innerHTML]="question.answer"></div>
+          <p class="card-text question-topic"><small class="text-muted"><strong>Topic:</strong> {{ question.topicName }}</small></p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

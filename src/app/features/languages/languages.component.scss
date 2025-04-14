@@ -1,0 +1,104 @@
+.container {
+  padding: 16px;
+}
+
+.language-card {
+  height: 220px; /* Reduced height */
+  width: 90%; /* Adjusted width for better alignment */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem; /* Reduced padding */
+  border-radius: 8px;
+  background-color: #ffffff;
+  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.logo-container {
+  width: 80px; /* Reduced size */
+  height: 80px; /* Reduced size */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.8rem; /* Adjusted margin */
+  background-color: #f5f5f5;
+  border-radius: 50%;
+
+  .language-icon {
+    font-size: 40px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333;
+  }
+}
+
+.language-logo {
+  width: 80%; /* Adjusted size */
+  height: 60%; /* Adjusted size */
+  object-fit: contain;
+}
+
+.default-logo {
+  font-size: 36px; /* Adjusted font size */
+  color: #888;
+}
+
+.language-name {
+  text-align: center;
+  font-size: 1.1rem; /* Slightly reduced font size */
+  font-weight: 600;
+  margin-bottom: 0.4rem; /* Adjusted margin */
+  color: #333;
+}
+
+.card-text {
+  color: #555;
+  margin-bottom: 0.8rem; /* Adjusted margin */
+  font-size: 0.9rem; /* Slightly reduced font size */
+}
+
+.card-actions {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+
+  button {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    font-size: 0.8rem;
+    padding: 6px 12px;
+    border-radius: 4px;
+    text-transform: uppercase;
+
+    mat-icon {
+      font-size: 16px;
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 960px) {
+  mat-grid-list {
+    cols: 2;
+  }
+}
+
+@media (max-width: 600px) {
+  mat-grid-list {
+    cols: 1;
+  }
+}

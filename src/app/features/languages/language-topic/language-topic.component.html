@@ -1,0 +1,50 @@
+<div class="container">
+  <mat-card class="topics-card">
+    <mat-card-header>
+      <mat-card-title>{{ languageName }} Topics</mat-card-title>
+      <button mat-icon-button color="primary" (click)="navigateToAllQuestions()" class="questions-button">
+        <fa-icon [icon]="faQuestionCircle"></fa-icon>
+        <span class="button-label">Questions</span>
+      </button>
+    </mat-card-header>
+
+    <mat-card-content>
+      <!-- Loading State -->
+      <div *ngIf="isLoading" class="loading-container">
+        <mat-spinner diameter="40"></mat-spinner>
+        <p>Loading topics...</p>
+      </div>
+
+      <!-- Error State -->
+      <div *ngIf="error" class="error-container">
+        <mat-icon color="warn" class="error-icon">error_outline</mat-icon>
+        <p>{{ error }}</p>
+      </div>
+
+      <!-- Topics List -->
+      <div *ngIf="!isLoading && !error" class="topics-grid">
+        <mat-card *ngFor="let topic of topics" class="topic-card" (click)="navigateToTopicDetail(topic.languageTopicId)">
+          <mat-card-content>
+            <div class="topic-header">
+              <div class="topic-title">
+                <span class="topic-number" *ngIf="topic.orderNo > 0">{{ topic.orderNo }}.</span>
+                <h3>{{ topic.topicName }}</h3>
+              </div>
+              <fa-icon *ngIf="topic.youtubeVideoUrl" 
+                      [icon]="faPlayCircle" 
+                      class="play-icon"
+                      (click)="openYoutubeVideo(topic.youtubeVideoUrl!)">
+              </fa-icon>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+      <!-- No Topics State -->
+      <div *ngIf="!isLoading && !error && topics.length === 0" class="no-topics">
+        <mat-icon color="primary">info</mat-icon>
+        <p>No topics available for this language.</p>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

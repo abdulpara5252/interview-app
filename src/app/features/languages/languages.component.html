@@ -1,0 +1,37 @@
+<div class="container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Programming Languages</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-grid-list cols="3" rowHeight="250px" gutterSize="16">
+        <mat-grid-tile *ngFor="let language of languages">
+          <mat-card class="language-card">
+            <div class="logo-container">
+              <img 
+                *ngIf="language.logo"
+                [src]="language.logo" 
+                [alt]="language.language"
+                class="language-logo"
+                (error)="handleImageError($event)"
+              >
+              <mat-icon *ngIf="!language.logo" class="default-logo"></mat-icon>
+            </div>
+            <span class="language-name">{{ language.language }}</span>
+            <p class="card-text">Questions: {{ language.questionCount || 0 }}</p>
+            <mat-card-actions class="card-actions">
+              <button mat-raised-button color="primary" (click)="handleLanguageClick(language.languageId)">
+                <mat-icon>topic</mat-icon>
+                Topics
+              </button>
+              <button mat-raised-button color="accent" (click)="handleQuestionClick(language.languageId)">
+                <mat-icon>help_outline</mat-icon>
+                Questions
+              </button>
+            </mat-card-actions>
+          </mat-card>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </mat-card-content>
+  </mat-card>
+</div>

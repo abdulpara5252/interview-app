@@ -1,0 +1,38 @@
+<mat-toolbar color="primary" class="mat-elevation-z4">
+    <div class="navbar-container">
+        <!-- Left side - Menu button and title -->
+        <div class="navbar-left">
+            <button mat-icon-button (click)="toggleSidenav()" class="menu-button">
+                <mat-icon>menu</mat-icon>
+            </button>
+            <span class="toolbar-title" routerLink="/">Interview Prep</span>
+        </div>
+        <!-- Right side - Search form and other actions -->
+        <div class="navbar-right">
+            <!-- Search form (visible on desktop) -->
+            <form class="search-form desktop-search" (submit)="onSearch($event)" style="width: 300px;">
+                <mat-form-field appearance="outline" floatLabel="auto" style="width: 100%;">
+                    <input matInput type="search" placeholder="Search questions..." #searchInput>
+                    <mat-icon matSuffix>search</mat-icon>
+                </mat-form-field>
+            </form>
+
+            <!-- Mobile search button (hidden on desktop) -->
+            <button mat-icon-button class="mobile-search-button" (click)="toggleMobileSearch()" *ngIf="isMobile">
+                <mat-icon>search</mat-icon>
+            </button>
+        </div>
+    </div>
+
+    <!-- Mobile search form (hidden by default) -->
+    <div class="mobile-search-container" *ngIf="showMobileSearch" style="display: none;" [ngStyle]="{'display': isMobile ? 'block' : 'none'}">
+        <form class="search-form mobile-search" (submit)="onSearch($event)">
+            <mat-form-field appearance="outline" floatLabel="auto">
+                <input matInput type="search" placeholder="Search..." #mobileSearchInput>
+                <button mat-icon-button matSuffix type="submit">
+                    <mat-icon>search</mat-icon>
+                </button>
+            </mat-form-field>
+        </form>
+    </div>
+</mat-toolbar>

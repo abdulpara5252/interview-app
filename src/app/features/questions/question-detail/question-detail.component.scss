@@ -1,0 +1,136 @@
+.container {
+    margin-top: 20px;
+    padding: 20px;
+    max-width: 1200px;
+  }
+  
+  .header {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    
+    .header-content {
+      h2 {
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+      }
+      
+      p {
+        margin-bottom: 0;
+      }
+    }
+
+    .tags-dropdown {
+      min-width: 200px;
+      margin-left: 1rem;
+    }
+  }
+  
+  .accordion {
+    .accordion-item {
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      border: 1px solid #dee2e6;
+      
+      .accordion-button {
+        font-weight: 500;
+        padding: 1.25rem 1.5rem;
+        background-color: #f8f9fa;
+        
+        &:not(.collapsed) {
+          background-color: #e9ecef;
+        }
+        
+        &:focus {
+          box-shadow: none;
+          border-color: #86b7fe;
+        }
+        
+        &::after {
+          background-size: 1.25rem;
+        }
+      }
+      
+      .accordion-body {
+        padding: 1.5rem;
+        background-color: #fff;
+      }
+    }
+  }
+  
+  .answer-content {
+    line-height: 1.6;
+    
+    pre {
+      background-color: #f8f9fa;
+      padding: 1rem;
+      border-radius: 4px;
+      overflow-x: auto;
+    }
+    
+    code {
+      background-color: #f8f9fa;
+      padding: 0.2rem 0.4rem;
+      border-radius: 3px;
+      font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+    
+    ol, ul {
+      padding-left: 1.5rem;
+    }
+    
+    li {
+      margin-bottom: 0.5rem;
+    }
+  }
+  
+  .badge {
+    font-size: 0.85rem;
+    padding: 0.5em 0.75em;
+    font-weight: 500;
+    
+    &.bg-primary {
+      background-color: #0d6efd !important;
+    }
+  }
+  
+  .spinner-border {
+    width: 3rem;
+    height: 3rem;
+  }
+  
+  .alert {
+    font-size: 1rem;
+    padding: 1rem;
+    border-radius: 8px;
+    
+    i {
+      font-size: 1.2rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .accordion-body {
+      .row {
+        flex-direction: column;
+        
+        .col-md-2 {
+          margin-bottom: 1rem;
+          text-align: center !important;
+        }
+      }
+    }
+  }
+
+  .form-select {
+    max-width: 300px;
+    margin-bottom: 1rem;
+  }
+
+  .tags-dropdown {
+    min-width: 200px;
+    margin-bottom: 1rem;
+  }
