@@ -8,6 +8,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { CommonModule } from '@angular/common';
+import { FilterPipe } from '../../pipes/filter.pipe';
+import { InterviewService } from '../../../core/services/interview.service';
 
 @Component({
   selector: 'app-navbar',
@@ -22,13 +24,20 @@ import { CommonModule } from '@angular/common';
     MatInputModule,
     MatButtonModule,
     MatSelectModule,
+    FilterPipe,
   ],
 })
 export class NavbarComponent {
   showMobileSearch = false;
   isMobile = false;
+  searchResults: any[] = [];
+  searchQuery: string = '';
 
-  constructor(private router: Router, private http: HttpClient) {
+  constructor(
+    private router: Router, 
+    private http: HttpClient,
+    private interviewService: InterviewService
+  ) {
     this.updateIsMobile();
   }
 
@@ -45,13 +54,22 @@ export class NavbarComponent {
     event.preventDefault();
     const form = event.target as HTMLFormElement;
     const input = form.querySelector('input') as HTMLInputElement;
-    const query = input.value.trim();
+    this.searchQuery = input.value.trim();
 
-    if (query) {
-      this.router.navigate(['/search'], { queryParams: { q: query } });
+    if (this.searchQuery) {
+      this.interviewService.searchQuestions(this.searchQuery)
+        .subscribe(response => {
+          if (response.result) {
+            this.searchResults = response.data;
+            this.router.navigate(['/search'], { 
+              queryParams: { 
+                q: this.searchQuery
+              }
+            });
+          }
+        });
     }
 
-    // Reset mobile search
     this.showMobileSearch = false;
     input.value = '';
   }

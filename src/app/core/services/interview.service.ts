@@ -25,7 +25,7 @@ export class InterviewService {
   }
 
   searchQuestions(query: string): Observable<any> {
-    return this.http.get(`${this.baseUrl}/search?query=${query}`);
+    return this.http.get(`${this.baseUrl}/search?searchquery=${query}`);
   }
 
   getAllQuestions(): Observable<QuestionsResponse> {

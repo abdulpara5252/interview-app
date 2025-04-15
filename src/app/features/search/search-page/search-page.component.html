@@ -1,0 +1,49 @@
+<div class="search-results-container">
+  <h2 *ngIf="searchQuery">Search Results for "{{ searchQuery }}"</h2>
+  <h2 *ngIf="!searchQuery && !isLoading">Please enter a search term above.</h2>
+
+  <div *ngIf="isLoading" style="display: flex; justify-content: center; padding: 20px;">
+    <mat-spinner diameter="50"></mat-spinner>
+  </div>
+
+  <div *ngIf="error" class="error-message" style="color: red; margin-top: 10px;">
+    {{ error }}
+  </div>
+
+  <div *ngIf="!isLoading && !error && searchResults.length === 0 && searchQuery" style="margin-top: 10px;">
+    <p>No questions found matching your search criteria.</p>
+  </div>
+
+  <div *ngIf="!isLoading && !error && searchResults.length > 0">
+    <div class="results-grid">
+      <mat-card *ngFor="let result of searchResults" class="result-card" style="margin-bottom: 24px;">
+        <mat-card-header>
+          <mat-card-title>{{ result.question }}</mat-card-title>
+          <mat-card-subtitle>
+            <span><strong>Topic:</strong> {{ result.topicName }}</span>
+            <span style="margin-left: 16px;"><strong>Language:</strong> {{ result.language }}</span>
+            <span *ngIf="result.tags" style="margin-left: 16px;"><strong>Tags:</strong> {{ result.tags }}</span>
+          </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <div [innerHTML]="result.answer"></div>
+        </mat-card-content>
+        <mat-card-actions>
+          <span><strong>Question ID:</strong> {{ result.questionId }}</span>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>
+
+<style>
+/* Add some responsive grid styling for cards */
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 24px;
+}
+.result-card {
+  min-width: 300px;
+}
+</style>

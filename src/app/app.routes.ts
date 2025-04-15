@@ -4,6 +4,7 @@ import { LanguageTopicComponent } from './features/languages/language-topic/lang
 import { QuestionListComponent } from './features/questions/question-list/question-list.component';
 import { QuestionDetailComponent } from './features/questions/question-detail/question-detail.component';
 import { QuestionsComponent } from './features/questions/questions/questions.component';
+import { SearchPageComponent } from './features/search/search-page/search-page.component';
 
 export const routes: Routes = [
   { path: '', component: LanguagesComponent },
@@ -12,5 +13,6 @@ export const routes: Routes = [
   { path: 'questions/:id', component: QuestionsComponent },
   { path: 'question-detail/:id', component: QuestionDetailComponent },
   { path: 'question-list', component: QuestionListComponent },
+  { path: 'search', component: SearchPageComponent },
   { path: '**', redirectTo: '' }
 ];
