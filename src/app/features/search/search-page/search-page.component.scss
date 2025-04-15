@@ -1,0 +1,9 @@
+// Add responsive grid styling for cards
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 24px;
+}
+.result-card {
+  min-width: 300px;
+}
